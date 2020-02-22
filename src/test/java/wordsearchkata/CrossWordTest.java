@@ -3,12 +3,22 @@
  */
 package wordsearchkata;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class LibraryTest {
-    @Test public void testSomeLibraryMethod() {
-        Library classUnderTest = new Library();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+public class CrossWordTest {
+
+
+    CrossWord crossWord;
+
+    @Before
+    public void setUp() {
+        crossWord = new CrossWord();
+    }
+
+    @Test public void shouldReturnB() {
+
+        assertEquals("B", crossWord.word("B"));
     }
 }
