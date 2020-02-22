@@ -22,8 +22,4 @@ public class CrossWordTest {
         assertEquals("B", crossWord.word("B"));
     }
 
-    @Test public void shouldReturnU() {
-
-        assertEquals("U", crossWord.word("U"));
-    }
 }

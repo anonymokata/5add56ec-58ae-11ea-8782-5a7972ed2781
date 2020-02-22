@@ -49,9 +49,31 @@ public class CrossWord {
         } catch (IOException ex) {
             System.err.println(ex);
         }
-        outPut = allWords[0][0];
+        outPut = firstLetter(allWords, numLines, inputWord);
 
 
+        return outPut;
+    }
+
+
+    public String firstLetter(String[][] allWords, int numLines, String inputWord){
+        int locX = 0;
+        int locY = 0;
+        String outPut = "";
+        outerloop:
+        for (int l = 0; l < numLines; l++) {
+            for (int r = 0; r < numLines; r++) {
+                if (allWords[l][r].equals(inputWord.substring(0, 1))) {
+                    System.out.printf("%s, %s\n", l, r);
+                    outPut = inputWord.substring(0, 1);
+                    locX = l;
+                    locY = r;
+                    break outerloop;
+                }
+
+            }
+
+        }
         return outPut;
     }
 
