@@ -19,7 +19,7 @@ public class CrossWordTest {
 
     @Test public void shouldReturnB() {
 
-        assertEquals("B", crossWord.word("B"));
+        assertEquals("(2,11)", crossWord.word("B"));
     }
 
 }

@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Arrays;
+
 
 public class CrossWord {
     public String word(String inputWord) {
@@ -16,7 +18,10 @@ public class CrossWord {
         String[] lineArray = null;
         String nextLine = null;
         String outPut = "";
+        int[] firstLoc = new int[2];
         int numLines = 0;
+        int locX = 0;
+        int locY = 0;
 
 
 
@@ -49,14 +54,45 @@ public class CrossWord {
         } catch (IOException ex) {
             System.err.println(ex);
         }
-        outPut = firstLetter(allWords, numLines, inputWord);
+
+        firstLoc = firstLetter(allWords, numLines, inputWord);
+        locX = firstLoc[0];
+        locY = firstLoc[1];
+        System.out.printf("%s\n", inputWord.substring(0, 1));
+        System.out.printf("(%s,%s)\n", locX, locY);
+        outPut = "("+locX+","+locY+")";
 
 
         return outPut;
     }
 
 
-    public String firstLetter(String[][] allWords, int numLines, String inputWord){
+    public int[] firstLetter(String[][] allWords, int numLines, String inputWord){
+        //int locX = 0;
+        //int locY = 0;
+        //String outPut = "";
+        int[] firstLoc = new int[2];
+        outerloop:
+        for (int l = 0; l < numLines; l++) {
+            for (int r = 0; r < numLines; r++) {
+                if (allWords[l][r].equals(inputWord.substring(0, 1))) {
+                    System.out.printf("(%s,%s)\n", l, r);
+
+                    /*
+                    outPut = inputWord.substring(0, 1);
+                    locX = l;
+                    locY = r;
+                    */
+                    firstLoc[0] = l;
+                    firstLoc[1] = r;
+                    break outerloop;
+                }
+            }
+        }
+        return firstLoc;
+    }
+
+    public String searchHorizontally(String[][] allWords, int numLines, String inputWord){
         int locX = 0;
         int locY = 0;
         String outPut = "";
@@ -64,17 +100,19 @@ public class CrossWord {
         for (int l = 0; l < numLines; l++) {
             for (int r = 0; r < numLines; r++) {
                 if (allWords[l][r].equals(inputWord.substring(0, 1))) {
-                    System.out.printf("%s, %s\n", l, r);
+                    System.out.printf("(%s,%s)\n", l, r);
+
                     outPut = inputWord.substring(0, 1);
                     locX = l;
                     locY = r;
                     break outerloop;
                 }
-
             }
-
         }
         return outPut;
     }
+
+
+
 
 }
