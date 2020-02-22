@@ -22,4 +22,9 @@ public class CrossWordTest {
         assertEquals("(2,11)", crossWord.word("B"));
     }
 
+    @Test public void shouldReturnJO() {
+
+        assertEquals("(0,10),(0,11)", crossWord.word("JO"));
+    }
+
 }

@@ -4,11 +4,12 @@
 package wordsearchkata;
 
 import java.io.*;
+import java.util.Arrays;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.Arrays;
+
 
 
 public class CrossWord {
@@ -17,7 +18,8 @@ public class CrossWord {
         String[][] allWords = null; //Crossword in Array
         String[] lineArray = null;
         String nextLine = null;
-        String outPut = "";
+        //String[] outPut = null;
+        //String outPutString = "";
         int[] firstLoc = new int[2];
         int numLines = 0;
         int locX = 0;
@@ -30,7 +32,7 @@ public class CrossWord {
         try {
             BufferedReader lineReader = new BufferedReader(new FileReader(filePath));
             String firstLine = lineReader.readLine();
-            wordList = firstLine.split(",");
+            wordList = firstLine.split(","); // The list of words
 
             while (lineReader.readLine() != null){
                 numLines++;
@@ -43,7 +45,7 @@ public class CrossWord {
                 nextLine = Files.readAllLines(Paths.get("/Users/labateje/tddwordsearch/src/main/java/tddwordsearch/WordList")).get(i);
                 lineArray = nextLine.split(",");
                 for(int j=0;j<numLines;j++) {
-                    allWords[i-1][j] = lineArray[j];
+                    allWords[i-1][j] = lineArray[j]; // The actual crossword
                 }
             }
 
@@ -54,16 +56,19 @@ public class CrossWord {
         } catch (IOException ex) {
             System.err.println(ex);
         }
-
+        String[] outPut = new String[inputWord.length()];
         firstLoc = firstLetter(allWords, numLines, inputWord);
         locX = firstLoc[0];
         locY = firstLoc[1];
         System.out.printf("%s\n", inputWord.substring(0, 1));
         System.out.printf("(%s,%s)\n", locX, locY);
-        outPut = "("+locX+","+locY+")";
+        outPut[0] = "("+locX+","+locY+")";
+        outPut[1] = "("+0+","+11+")"; //Test
+       // outPutString = outPut.toString();
+        String outPutString = String.join(",", outPut);
+        System.out.printf("%s\n", outPutString);
 
-
-        return outPut;
+        return outPutString;
     }
 
 
@@ -92,10 +97,15 @@ public class CrossWord {
         return firstLoc;
     }
 
-    public String searchHorizontally(String[][] allWords, int numLines, String inputWord){
+    public String searchHorizontally(String[][] allWords, int numLines, String inputWord, int firstX, int firstY){
         int locX = 0;
         int locY = 0;
         String outPut = "";
+
+        //for(int i = 1; i < inputWord.length();i++){
+
+       // }
+
         outerloop:
         for (int l = 0; l < numLines; l++) {
             for (int r = 0; r < numLines; r++) {
