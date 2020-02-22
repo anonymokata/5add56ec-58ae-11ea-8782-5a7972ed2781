@@ -49,8 +49,9 @@ public class CrossWord {
         } catch (IOException ex) {
             System.err.println(ex);
         }
+        outPut = allWords[0][0];
 
-        outPut = inputWord;
+
         return outPut;
     }
 
