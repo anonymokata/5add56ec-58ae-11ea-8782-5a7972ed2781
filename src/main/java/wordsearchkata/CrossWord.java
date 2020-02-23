@@ -19,7 +19,6 @@ public class CrossWord {
         String[] lineArray = null;
         String nextLine = null;
         int[] firstLoc = new int[2];
-        String otherLocs = "";
         int numLines = 0;
         int locX = 0;
         int locY = 0;
@@ -57,20 +56,23 @@ public class CrossWord {
         }
 
         // This is the start of the actual search.
-        String[] outPut = new String[inputWord.length()];
+        String[] outPut = new String[inputWord.length()*2];
+        String[] otherLocs = new String[(inputWord.length()-1)*2];
+        String firstCoords = "";
         firstLoc = firstLetter(allWords, numLines, inputWord);
         locX = firstLoc[0];
         locY = firstLoc[1];
         //System.out.printf("%s\n", inputWord.substring(0, 1));
         //System.out.printf("(%s,%s)\n", locX, locY);
         outPut[0] = "("+locX+","+locY+")";
+        firstCoords = "("+locX+","+locY+")";
 
         otherLocs = searchHorizontally(allWords, numLines, inputWord, locX, locY);
-        //outPut[1] = otherLocs;
 
-        //String outPutString = String.join(",", outPut);
-        String outPutString = outPut[0] + otherLocs;
-        System.out.printf("%s: %s\n", inputWord, outPutString);
+
+        String outPutString = String.join(",", otherLocs);
+        outPutString = inputWord+": "+firstCoords+","+outPutString;
+        System.out.printf("%s\n", outPutString);
 
         return outPutString;
     }
@@ -92,11 +94,11 @@ public class CrossWord {
         return firstLoc;
     }
 
-    public String searchHorizontally(String[][] allWords, int numLines, String inputWord, int firstX, int firstY){
+    public String[] searchHorizontally(String[][] allWords, int numLines, String inputWord, int firstX, int firstY){
         int locX = 0;
         int locY = 0;
-        String outPut = "";
-
+        //String[] outPut = new String[(inputWord.length()-1)*2];
+        String[] outPut = new String[inputWord.length()-1];
         //for(int i = 1; i < inputWord.length();i++){
 
        // }
@@ -104,16 +106,15 @@ public class CrossWord {
         for(int i = 1; i < inputWord.length();i++){
             if(allWords[firstX][firstY+i].equals(inputWord.substring(i, i+1))){
                 System.out.printf("(%s,%s)\n", firstX, firstY+i);
-                outPut += inputWord.substring(i, i+1);
+                outPut[i-1] = "("+firstX+","+(firstY+i)+")";
 
             }
         }
         //Backwards
-        //for(int i = -1; i > -1-inputWord.length();i--){
         for(int i = 1; i < inputWord.length();i++){
             if(allWords[firstX][firstY-i].equals(inputWord.substring(i, i+1))){
                 System.out.printf("(%s,%s)\n", firstX, firstY-i);
-                outPut += inputWord.substring(i, i+1);
+                outPut[i-1] = "("+firstX+","+(firstY-i)+")";
 
             }
         }

@@ -39,6 +39,6 @@ public class CrossWordTest {
 
     @Test public void shouldReturnJVN() {
 
-        assertEquals("(0,10)VN", crossWord.word("JVN"));
+        assertEquals("JVN: (0,10),(0,9),(0,8)", crossWord.word("JVN"));
     }
 }
