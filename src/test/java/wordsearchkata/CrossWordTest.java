@@ -27,4 +27,13 @@ public class CrossWordTest {
         assertEquals("(0,10),(0,11)", crossWord.word("JO"));
     }
 
+    @Test public void shouldReturnJOC() {
+
+        assertEquals("(0,10)OC", crossWord.word("JOC"));
+    }
+
+    @Test public void shouldReturnJOCWE() {
+
+        assertEquals("(0,10)OCWE", crossWord.word("JOCWE"));
+    }
 }

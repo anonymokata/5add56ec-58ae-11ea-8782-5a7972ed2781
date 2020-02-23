@@ -18,15 +18,14 @@ public class CrossWord {
         String[][] allWords = null; //Crossword in Array
         String[] lineArray = null;
         String nextLine = null;
-        //String[] outPut = null;
-        //String outPutString = "";
         int[] firstLoc = new int[2];
+        String otherLocs = "";
         int numLines = 0;
         int locX = 0;
         int locY = 0;
 
 
-
+        // This is the pulling of the text file and population of the wordList and actual crossword.
         String filePath = "/Users/labateje/wordsearchkata/src/main/java/wordsearchkata/WordList";
 
         try {
@@ -56,38 +55,34 @@ public class CrossWord {
         } catch (IOException ex) {
             System.err.println(ex);
         }
+
+        // This is the start of the actual search.
         String[] outPut = new String[inputWord.length()];
         firstLoc = firstLetter(allWords, numLines, inputWord);
         locX = firstLoc[0];
         locY = firstLoc[1];
-        System.out.printf("%s\n", inputWord.substring(0, 1));
-        System.out.printf("(%s,%s)\n", locX, locY);
+        //System.out.printf("%s\n", inputWord.substring(0, 1));
+        //System.out.printf("(%s,%s)\n", locX, locY);
         outPut[0] = "("+locX+","+locY+")";
-        outPut[1] = "("+0+","+11+")"; //Test
-       // outPutString = outPut.toString();
-        String outPutString = String.join(",", outPut);
-        System.out.printf("%s\n", outPutString);
+
+        otherLocs = searchHorizontally(allWords, numLines, inputWord, locX, locY);
+        //outPut[1] = otherLocs;
+
+        //String outPutString = String.join(",", outPut);
+        String outPutString = outPut[0] + otherLocs;
+        System.out.printf("%s: %s\n", inputWord, outPutString);
 
         return outPutString;
     }
 
 
     public int[] firstLetter(String[][] allWords, int numLines, String inputWord){
-        //int locX = 0;
-        //int locY = 0;
-        //String outPut = "";
         int[] firstLoc = new int[2];
         outerloop:
         for (int l = 0; l < numLines; l++) {
             for (int r = 0; r < numLines; r++) {
                 if (allWords[l][r].equals(inputWord.substring(0, 1))) {
-                    System.out.printf("(%s,%s)\n", l, r);
-
-                    /*
-                    outPut = inputWord.substring(0, 1);
-                    locX = l;
-                    locY = r;
-                    */
+                    //System.out.printf("(%s,%s)\n", l, r);
                     firstLoc[0] = l;
                     firstLoc[1] = r;
                     break outerloop;
@@ -105,18 +100,12 @@ public class CrossWord {
         //for(int i = 1; i < inputWord.length();i++){
 
        // }
+        //Forward
+        for(int i = 1; i < inputWord.length();i++){
+            if(allWords[firstX][firstY+i].equals(inputWord.substring(i, i+1))){
+                System.out.printf("(%s,%s)\n", firstX, firstY+i);
+                outPut += inputWord.substring(i, i+1);
 
-        outerloop:
-        for (int l = 0; l < numLines; l++) {
-            for (int r = 0; r < numLines; r++) {
-                if (allWords[l][r].equals(inputWord.substring(0, 1))) {
-                    System.out.printf("(%s,%s)\n", l, r);
-
-                    outPut = inputWord.substring(0, 1);
-                    locX = l;
-                    locY = r;
-                    break outerloop;
-                }
             }
         }
         return outPut;
