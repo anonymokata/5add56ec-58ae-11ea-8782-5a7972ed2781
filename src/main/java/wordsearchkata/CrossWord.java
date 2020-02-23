@@ -67,7 +67,7 @@ public class CrossWord {
         outPut[0] = "("+locX+","+locY+")";
         firstCoords = "("+locX+","+locY+")";
 
-        otherLocs = searchHorizontally(allWords, numLines, inputWord, locX, locY);
+        otherLocs = searchHorizontally(allWords, inputWord, locX, locY);
 
 
         String outPutString = String.join(",", otherLocs);
@@ -94,20 +94,13 @@ public class CrossWord {
         return firstLoc;
     }
 
-    public String[] searchHorizontally(String[][] allWords, int numLines, String inputWord, int firstX, int firstY){
-        int locX = 0;
-        int locY = 0;
-        //String[] outPut = new String[(inputWord.length()-1)*2];
+    public String[] searchHorizontally(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
-        //for(int i = 1; i < inputWord.length();i++){
-
-       // }
         //Forwards
         for(int i = 1; i < inputWord.length();i++){
             if(allWords[firstX][firstY+i].equals(inputWord.substring(i, i+1))){
                 System.out.printf("(%s,%s)\n", firstX, firstY+i);
                 outPut[i-1] = "("+firstX+","+(firstY+i)+")";
-
             }
         }
         //Backwards
@@ -115,10 +108,8 @@ public class CrossWord {
             if(allWords[firstX][firstY-i].equals(inputWord.substring(i, i+1))){
                 System.out.printf("(%s,%s)\n", firstX, firstY-i);
                 outPut[i-1] = "("+firstX+","+(firstY-i)+")";
-
             }
         }
-
         return outPut;
     }
 

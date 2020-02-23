@@ -17,24 +17,19 @@ public class CrossWordTest {
         crossWord = new CrossWord();
     }
 
-    @Test public void shouldReturnB() {
-
-        assertEquals("(2,11)", crossWord.word("B"));
-    }
-
     @Test public void shouldReturnJO() {
 
-        assertEquals("(0,10),(0,11)", crossWord.word("JO"));
+        assertEquals("JO: (0,10),(0,11)", crossWord.word("JO"));
     }
 
     @Test public void shouldReturnJOC() {
 
-        assertEquals("(0,10)OC", crossWord.word("JOC"));
+        assertEquals("JOC: (0,10),(0,11),(0,12)", crossWord.word("JOC"));
     }
 
     @Test public void shouldReturnJOCWE() {
 
-        assertEquals("(0,10)OCWE", crossWord.word("JOCWE"));
+        assertEquals("JOCWE: (0,10),(0,11),(0,12),(0,13),(0,14)", crossWord.word("JOCWE"));
     }
 
     @Test public void shouldReturnJVN() {
