@@ -100,7 +100,7 @@ public class CrossWord {
         //for(int i = 1; i < inputWord.length();i++){
 
        // }
-        //Forward
+        //Forwards
         for(int i = 1; i < inputWord.length();i++){
             if(allWords[firstX][firstY+i].equals(inputWord.substring(i, i+1))){
                 System.out.printf("(%s,%s)\n", firstX, firstY+i);
@@ -108,6 +108,16 @@ public class CrossWord {
 
             }
         }
+        //Backwards
+        //for(int i = -1; i > -1-inputWord.length();i--){
+        for(int i = 1; i < inputWord.length();i++){
+            if(allWords[firstX][firstY-i].equals(inputWord.substring(i, i+1))){
+                System.out.printf("(%s,%s)\n", firstX, firstY-i);
+                outPut += inputWord.substring(i, i+1);
+
+            }
+        }
+
         return outPut;
     }
 
