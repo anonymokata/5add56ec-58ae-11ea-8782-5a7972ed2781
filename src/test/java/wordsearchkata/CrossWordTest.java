@@ -22,6 +22,16 @@ public class CrossWordTest {
         assertEquals("JO: (0,10),(0,11)", crossWord.word("JO"));
     }
 
+    @Test public void shouldReturnUYG() {
+
+        assertEquals("UYG: (1,12),(1,13),(1,14)", crossWord.word("UYG"));
+    }
+
+    @Test public void shouldReturnXTG() {
+
+        assertEquals("XTG: (2,12),(2,13),(2,14)", crossWord.word("XTG"));
+    }
+
     @Test public void shouldReturnJOC() {
 
         assertEquals("JOC: (0,10),(0,11),(0,12)", crossWord.word("JOC"));
