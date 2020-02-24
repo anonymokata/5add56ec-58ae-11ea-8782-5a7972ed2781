@@ -74,7 +74,7 @@ public class CrossWordTest {
 
     @Test public void shouldReturnSCOTTY() {
 
-        assertEquals("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)", crossWord.word("SCOTTY"));
+        assertEquals("SCOTTY: (5,0),(5,1),(5,2),(5,3),(5,4),(5,5)", crossWord.word("SCOTTY"));
     }
 }
 
