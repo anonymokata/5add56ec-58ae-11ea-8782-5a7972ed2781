@@ -17,6 +17,8 @@ public class CrossWordTest {
         crossWord = new CrossWord();
     }
 
+
+    //Horizontal Tests
     @Test public void shouldReturnJO() {
 
         assertEquals("JO: (0,10),(0,11)", crossWord.word("JO"));
@@ -86,5 +88,47 @@ public class CrossWordTest {
 
         assertEquals("SCOTTY: (5,0),(5,1),(5,2),(5,3),(5,4),(5,5)", crossWord.word("SCOTTY"));
     }
+
+    @Test public void shouldReturnKEAB() {
+
+        assertEquals("KEAB: (14,11),(14,12),(14,13),(14,14)", crossWord.word("KEAB"));
+    }
+
+    @Test public void shouldReturnBAEK() {
+
+        assertEquals("BAEK: (14,14),(14,13),(14,12),(14,11)", crossWord.word("BAEK"));
+    }
+
+    //Vertical Test
+    @Test public void shouldReturnMLSR() {
+
+        assertEquals("MLSR: (0,1),(1,1),(2,1),(3,1)", crossWord.word("MLSR"));
+    }
+
+    @Test public void shouldReturnCIYT() {
+
+        assertEquals("CIYT: (14,10),(13,10),(12,10),(11,10)", crossWord.word("CIYT"));
+    }
+
+    @Test public void shouldReturnKHSB() {
+
+        assertEquals("KHSB: (11,14),(12,14),(13,14),(14,14)", crossWord.word("KHSB"));
+    }
+
+    //DiagonalDesc Test
+    @Test public void shouldReturnHJEI() {
+
+        assertEquals("HJEI: (1,3),(2,4),(3,5),(4,6)", crossWord.word("HJEI"));
+    }
+
+    @Test public void shouldReturnHIDW() {
+
+        assertEquals("HIDW: (4,10),(3,9),(2,8),(1,7)", crossWord.word("HIDW"));
+    }
+
+    //DiagonalAsc Test
+
 }
+
+
 
