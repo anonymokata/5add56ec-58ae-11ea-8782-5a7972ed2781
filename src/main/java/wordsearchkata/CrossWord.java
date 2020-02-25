@@ -15,11 +15,13 @@ public class CrossWord {
         String[] wordList = null; //Array of words
         String[][] allWords = null; //Crossword in Array
         String[] lineArray = null;
+        String[] switcherList = null;
         String nextLine = null;
         String outPut = "";
         String inputW = "";
         String firstWord = "";
         int numLines = 0;
+        boolean useCustomInput = false; //Default False, change to true if you want custom input for tests
 
         // This is the pulling of the text file and population of the wordList and actual crossword.
         String filePath = "/Users/labateje/wordsearchkata/src/main/java/wordsearchkata/WordList";
@@ -57,6 +59,21 @@ public class CrossWord {
             }
         }
         */
+
+        if(useCustomInput == false){
+            switcherList = wordList;
+        } else if(useCustomInput == true){
+            String inputWordList[] = inputWords.split(",");
+            switcherList = inputWordList;
+        }
+
+        firstWord = switcherList[0];
+        outPut = crossWordSearch(allWords, numLines, firstWord);
+        for(int i=1;i<switcherList.length;i++){
+            inputW = switcherList[i];
+            outPut += "\n" + crossWordSearch(allWords, numLines, inputW);
+        }
+        /*
         String inputWordList[] = inputWords.split(",");
         firstWord = inputWordList[0];
         outPut = crossWordSearch(allWords, numLines, firstWord);
@@ -64,7 +81,7 @@ public class CrossWord {
             inputW = inputWordList[i];
             outPut += "\n" + crossWordSearch(allWords, numLines, inputW);
         }
-
+         */
         return outPut;
     }
 
@@ -86,13 +103,13 @@ public class CrossWord {
             String[] da = null;
             String[] outPut = null;
 
-            h = searchHorizontally(allWords, inputWord, locX, locY);
+            h = searchHorizontally(allWords, inputWord, numLines, locX, locY);
             if(h == null){
-                v = searchVertically(allWords, inputWord, locX, locY);
+                v = searchVertically(allWords, inputWord, numLines, locX, locY);
                 if(v==null){
-                    dd = searchDiagonallyDesc(allWords, inputWord, locX, locY);
+                    dd = searchDiagonallyDesc(allWords, inputWord, numLines, locX, locY);
                     if(dd==null){
-                        da = searchDiagonallyAsce(allWords, inputWord, locX, locY);
+                        da = searchDiagonallyAsce(allWords, inputWord, numLines, locX, locY);
                         if(da==null){
                             r++; //For testing purposes only
                             continue;
@@ -135,12 +152,12 @@ public class CrossWord {
         return firstLoc;
     }
 
-    public String[] searchHorizontally(String[][] allWords, String inputWord, int firstX, int firstY){
+    public String[] searchHorizontally(String[][] allWords, String inputWord, int numLines, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-           if((firstX<14)&&(allWords[firstY][firstX+1].equals(inputWord.substring(1, 1+1)))){
+           if((firstX<(numLines-1))&&(allWords[firstY][firstX+1].equals(inputWord.substring(1, 1+1)))){
                //Right
-               if(((inputWord.length()-1)+firstX)>14){
+               if(((inputWord.length()-1)+firstX)>(numLines-1)){
                    outPut = null;
                    break;
                }
@@ -170,12 +187,12 @@ public class CrossWord {
         return outPut;
     }
 
-    public String[] searchVertically(String[][] allWords, String inputWord, int firstX, int firstY){
+    public String[] searchVertically(String[][] allWords, String inputWord, int numLines, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-            if((firstY<14)&&(allWords[firstY+1][firstX].equals(inputWord.substring(1, 1+1)))){
+            if((firstY<(numLines-1))&&(allWords[firstY+1][firstX].equals(inputWord.substring(1, 1+1)))){
                 //Down
-                if(((inputWord.length()-1)+firstY)>14){
+                if(((inputWord.length()-1)+firstY)>(numLines-1)){
                     outPut = null;
                     break;
                 }
@@ -209,12 +226,12 @@ public class CrossWord {
         return outPut;
     }
 
-    public String[] searchDiagonallyDesc(String[][] allWords, String inputWord, int firstX, int firstY){
+    public String[] searchDiagonallyDesc(String[][] allWords, String inputWord, int numLines, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-            if((firstY<14)&&(firstX<14)&&(allWords[firstY+1][firstX+1].equals(inputWord.substring(1, 1+1)))){
+            if((firstY<(numLines-1))&&(firstX<(numLines-1))&&(allWords[firstY+1][firstX+1].equals(inputWord.substring(1, 1+1)))){
                 //DownRight
-                if((((inputWord.length()-1)+firstX)>14)||(((inputWord.length()-1)+firstY)>14)){
+                if((((inputWord.length()-1)+firstX)>(numLines-1))||(((inputWord.length()-1)+firstY)>14)){
                     outPut = null;
                     break;
                 }
@@ -248,10 +265,10 @@ public class CrossWord {
         return outPut;
     }
 
-    public String[] searchDiagonallyAsce(String[][] allWords, String inputWord, int firstX, int firstY){
+    public String[] searchDiagonallyAsce(String[][] allWords, String inputWord, int numLines, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-            if((firstY<14)&&(firstX>0)&&(allWords[firstY+1][firstX-1].equals(inputWord.substring(1, 1+1)))){
+            if((firstY<(numLines-1))&&(firstX>0)&&(allWords[firstY+1][firstX-1].equals(inputWord.substring(1, 1+1)))){
                 //DownLeft
                 for(int i = 1; i < inputWord.length();i++){
                     if(allWords[firstY+i][firstX-i].equals(inputWord.substring(i, i+1))){
@@ -261,7 +278,7 @@ public class CrossWord {
                         break;
                     }
                 }
-            } else if((firstY>0)&&(firstX<14)&&(allWords[firstY-1][firstX+1].equals(inputWord.substring(1, 1+1)))){
+            } else if((firstY>0)&&(firstX<(numLines-1))&&(allWords[firstY-1][firstX+1].equals(inputWord.substring(1, 1+1)))){
                 for(int i = 1; i < inputWord.length();i++){
                     if(allWords[firstY-i][firstX+i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX+i)+","+(firstY-i)+")";
