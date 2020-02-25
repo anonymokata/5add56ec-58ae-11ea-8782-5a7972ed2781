@@ -63,8 +63,8 @@ public class CrossWord {
             // This is the start of the actual search.
 
             int[][] firstLoc = firstLetter(allWords, numLines, inputWord);
-            locX = firstLoc[r][0];
-            locY = firstLoc[r][1];
+            locY = firstLoc[r][0];
+            locX = firstLoc[r][1];
             String firstCoords = "("+locX+","+locY+")";
             String[] h = null;
             String[] v = null;
@@ -124,25 +124,25 @@ public class CrossWord {
     public String[] searchHorizontally(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-           if((firstY<14)&&(allWords[firstX][firstY+1].equals(inputWord.substring(1, 1+1)))){
+           if((firstX<14)&&(allWords[firstY][firstX+1].equals(inputWord.substring(1, 1+1)))){
                //Right
-               if(((inputWord.length()-1)+firstY)>14){
+               if(((inputWord.length()-1)+firstX)>14){
                    outPut = null;
                    break;
                }
                for(int i = 1; i < inputWord.length();i++){
-                   if(allWords[firstX][firstY+i].equals(inputWord.substring(i, i+1))){
-                       outPut[i-1] = "("+(firstX)+","+(firstY+i)+")";
+                   if(allWords[firstY][firstX+i].equals(inputWord.substring(i, i+1))){
+                       outPut[i-1] = "("+(firstX+i)+","+(firstY)+")";
                    } else{
                        outPut = null;
                        break;
                    }
                }
-           } else if((firstY>0)&&(allWords[firstX][firstY-1].equals(inputWord.substring(1, 1+1)))){
+           } else if((firstX>0)&&(allWords[firstY][firstX-1].equals(inputWord.substring(1, 1+1)))){
                //Left
                for(int i = 1; i < inputWord.length();i++){
-                   if(allWords[firstX][firstY-i].equals(inputWord.substring(i, i+1))){
-                       outPut[i-1] = "("+(firstX)+","+(firstY-i)+")";
+                   if(allWords[firstY][firstX-i].equals(inputWord.substring(i, i+1))){
+                       outPut[i-1] = "("+(firstX-i)+","+(firstY)+")";
                    } else{
                        outPut = null;
                        break;
@@ -159,29 +159,29 @@ public class CrossWord {
     public String[] searchVertically(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-            if((firstX<14)&&(allWords[firstX+1][firstY].equals(inputWord.substring(1, 1+1)))){
+            if((firstY<14)&&(allWords[firstY+1][firstX].equals(inputWord.substring(1, 1+1)))){
                 //Down
-                if(((inputWord.length()-1)+firstX)>14){
+                if(((inputWord.length()-1)+firstY)>14){
                     outPut = null;
                     break;
                 }
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX+i][firstY].equals(inputWord.substring(i, i+1))){
-                        outPut[i-1] = "("+(firstX+i)+","+(firstY)+")";
+                    if(allWords[firstY+i][firstX].equals(inputWord.substring(i, i+1))){
+                        outPut[i-1] = "("+(firstX)+","+(firstY+i)+")";
                     } else{
                         outPut = null;
                         break;
                     }
                 }
-            } else if((firstX>0)&&(allWords[firstX-1][firstY].equals(inputWord.substring(1, 1+1)))){
+            } else if((firstY>0)&&(allWords[firstY-1][firstX].equals(inputWord.substring(1, 1+1)))){
                 //Up
-                if(((firstX-(inputWord.length()-1))<0)){
+                if(((firstY-(inputWord.length()-1))<0)){
                     outPut = null;
                     break;
                 }
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX-i][firstY].equals(inputWord.substring(i, i+1))){
-                        outPut[i-1] = "("+(firstX-i)+","+(firstY)+")";
+                    if(allWords[firstY-i][firstX].equals(inputWord.substring(i, i+1))){
+                        outPut[i-1] = "("+(firstX)+","+(firstY-i)+")";
                     } else{
                         outPut = null;
                         break;
@@ -198,28 +198,28 @@ public class CrossWord {
     public String[] searchDiagonallyDesc(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-            if((firstX<14)&&(firstY<14)&&(allWords[firstX+1][firstY+1].equals(inputWord.substring(1, 1+1)))){
+            if((firstY<14)&&(firstX<14)&&(allWords[firstY+1][firstX+1].equals(inputWord.substring(1, 1+1)))){
                 //DownRight
-                if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
+                if((((inputWord.length()-1)+firstX)>14)||(((inputWord.length()-1)+firstY)>14)){
                     outPut = null;
                     break;
                 }
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX+i][firstY+i].equals(inputWord.substring(i, i+1))){
+                    if(allWords[firstY+i][firstX+i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX+i)+","+(firstY+i)+")";
                     } else{
                         outPut = null;
                         break;
                     }
                 }
-            } else if((firstX>0)&&(firstY>0)&&(allWords[firstX-1][firstY-1].equals(inputWord.substring(1, 1+1)))){
+            } else if((firstY>0)&&(firstX>0)&&(allWords[firstY-1][firstX-1].equals(inputWord.substring(1, 1+1)))){
                 //UpLeft
                 if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
                     outPut = null;
                     break;
                 }
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX-i][firstY-i].equals(inputWord.substring(i, i+1))){
+                    if(allWords[firstY-i][firstX-i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX-i)+","+(firstY-i)+")";
                     } else{
                         outPut = null;
@@ -237,20 +237,20 @@ public class CrossWord {
     public String[] searchDiagonallyAsce(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
         while(true){
-            if((firstX<14)&&(firstY>0)&&(allWords[firstX+1][firstY-1].equals(inputWord.substring(1, 1+1)))){
+            if((firstY<14)&&(firstX>0)&&(allWords[firstY+1][firstX-1].equals(inputWord.substring(1, 1+1)))){
                 //DownLeft
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX+i][firstY-i].equals(inputWord.substring(i, i+1))){
-                        outPut[i-1] = "("+(firstX+i)+","+(firstY-i)+")";
+                    if(allWords[firstY+i][firstX-i].equals(inputWord.substring(i, i+1))){
+                        outPut[i-1] = "("+(firstX-i)+","+(firstY+i)+")";
                     } else{
                         outPut = null;
                         break;
                     }
                 }
-            } else if((firstX>0)&&(firstY<14)&&(allWords[firstX-1][firstY+1].equals(inputWord.substring(1, 1+1)))){
+            } else if((firstY>0)&&(firstX<14)&&(allWords[firstY-1][firstX+1].equals(inputWord.substring(1, 1+1)))){
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX-i][firstY+i].equals(inputWord.substring(i, i+1))){
-                        outPut[i-1] = "("+(firstX-i)+","+(firstY+i)+")";
+                    if(allWords[firstY-i][firstX+i].equals(inputWord.substring(i, i+1))){
+                        outPut[i-1] = "("+(firstX+i)+","+(firstY-i)+")";
                     } else{
                         outPut = null;
                         break;

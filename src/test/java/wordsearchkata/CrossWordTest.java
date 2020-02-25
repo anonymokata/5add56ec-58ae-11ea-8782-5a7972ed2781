@@ -19,153 +19,29 @@ public class CrossWordTest {
 
 
     //Horizontal Tests
-    @Test public void shouldReturnJO() {
+    @Test public void shouldReturnBONES() {
 
-        assertEquals("JO: (0,10),(0,11)", crossWord.word("JO"));
+        assertEquals("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)", crossWord.word("BONES"));
     }
 
-    @Test public void shouldReturnUYG() {
+    @Test public void shouldReturnKHAN() {
 
-        assertEquals("UYG: (1,12),(1,13),(1,14)", crossWord.word("UYG"));
+        assertEquals("KHAN: (5,9),(5,8),(5,7),(5,6)", crossWord.word("KHAN"));
     }
 
-    @Test public void shouldReturnXTG() {
+    @Test public void shouldReturnKIRK() {
 
-        assertEquals("XTG: (2,12),(2,13),(2,14)", crossWord.word("XTG"));
-    }
-
-    @Test public void shouldReturnJOC() {
-
-        assertEquals("JOC: (0,10),(0,11),(0,12)", crossWord.word("JOC"));
-    }
-
-    @Test public void shouldReturnJOCWE() {
-
-        assertEquals("JOCWE: (0,10),(0,11),(0,12),(0,13),(0,14)", crossWord.word("JOCWE"));
-    }
-
-    @Test public void shouldReturnJVN() {
-
-        assertEquals("JVN: (0,10),(0,9),(0,8)", crossWord.word("JVN"));
-    }
-
-    @Test public void shouldReturnKIN() {
-
-        assertEquals("KIN: (0,6),(0,7),(0,8)", crossWord.word("KIN"));
-    }
-
-    @Test public void shouldReturnBRJS() {
-
-        assertEquals("BRJS: (3,0),(3,1),(3,2),(3,3)", crossWord.word("BRJS"));
-    }
-
-    @Test public void shouldReturnZZ() {
-
-        assertEquals("ZZ: (1,5),(1,6)", crossWord.word("ZZ"));
-    }
-
-    @Test public void shouldReturnXT() {
-
-        assertEquals("XT: (2,12),(2,13)", crossWord.word("XT"));
-    }
-
-    @Test public void shouldReturnETIK() {
-
-        assertEquals("ETIK: (3,7),(3,8),(3,9),(3,10)", crossWord.word("ETIK"));
-    }
-
-    @Test public void shouldReturnLLSH() {
-
-        assertEquals("LLSH: (1,0),(1,1),(1,2),(1,3)", crossWord.word("LLSH"));
-    }
-
-    @Test public void shouldReturnCOTTYK() {
-
-        assertEquals("COTTYK: (5,1),(5,2),(5,3),(5,4),(5,5),(5,6)", crossWord.word("COTTYK"));
+        assertEquals("KIRK: (4,7),(3,7),(2,7),(1,7)", crossWord.word("KIRK"));
     }
 
     @Test public void shouldReturnSCOTTY() {
 
-        assertEquals("SCOTTY: (5,0),(5,1),(5,2),(5,3),(5,4),(5,5)", crossWord.word("SCOTTY"));
+        assertEquals("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)", crossWord.word("SCOTTY"));
     }
 
-    @Test public void shouldReturnKEAB() {
+    @Test public void shouldReturnSPOCK() {
 
-        assertEquals("KEAB: (14,11),(14,12),(14,13),(14,14)", crossWord.word("KEAB"));
-    }
-
-    @Test public void shouldReturnBAEK() {
-
-        assertEquals("BAEK: (14,14),(14,13),(14,12),(14,11)", crossWord.word("BAEK"));
-    }
-
-    @Test public void shouldReturnUMKHU() {
-
-        assertEquals("UMKHU: (0,0),(0,1),(0,2),(0,3),(0,4)", crossWord.word("UMKHU"));
-    }
-
-    @Test public void shouldReturnKYLBQQ() {
-
-        assertEquals("KYLBQQ: (14,0),(14,1),(14,2),(14,3),(14,4),(14,5)", crossWord.word("KYLBQQ"));
-    }
-
-    @Test public void shouldReturnIKAMMRMF() {
-
-        assertEquals("IKAMMRMF: (7,3),(7,4),(7,5),(7,6),(7,7),(7,8),(7,9),(7,10)", crossWord.word("IKAMMRMF"));
-    }
-
-
-
-    //Vertical Test
-    @Test public void shouldReturnMLSR() {
-
-        assertEquals("MLSR: (0,1),(1,1),(2,1),(3,1)", crossWord.word("MLSR"));
-    }
-
-    @Test public void shouldReturnCIYT() {
-
-        assertEquals("CIYT: (14,10),(13,10),(12,10),(11,10)", crossWord.word("CIYT"));
-    }
-
-    @Test public void shouldReturnKHSB() {
-
-        assertEquals("KHSB: (11,14),(12,14),(13,14),(14,14)", crossWord.word("KHSB"));
-    }
-
-    @Test public void shouldReturnEGGE() {
-
-        assertEquals("EGGE: (0,14),(1,14),(2,14),(3,14)", crossWord.word("EGGE"));
-    }
-
-    @Test public void shouldReturnKWOT() {
-
-        assertEquals("KWOT: (14,0),(13,0),(12,0),(11,0)", crossWord.word("KWOT"));
-    }
-
-    @Test public void shouldReturnBSHK() {
-
-        assertEquals("BSHK: (14,14),(13,14),(12,14),(11,14)", crossWord.word("BSHK"));
-    }
-
-    @Test public void shouldReturnULHB() {
-
-        assertEquals("ULHB: (0,0),(1,0),(2,0),(3,0)", crossWord.word("ULHB"));
-    }
-
-    //DiagonalDesc Test
-    @Test public void shouldReturnHJEI() {
-
-        assertEquals("HJEI: (1,3),(2,4),(3,5),(4,6)", crossWord.word("HJEI"));
-    }
-
-    @Test public void shouldReturnHIDW() {
-
-        assertEquals("HIDW: (4,10),(3,9),(2,8),(1,7)", crossWord.word("HIDW"));
-    }
-
-    @Test public void shouldReturnULUS() {
-
-        assertEquals("ULUS: (0,0),(1,1),(2,2),(3,3)", crossWord.word("ULUS"));
+        assertEquals("SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)", crossWord.word("SPOCK"));
     }
 
     @Test public void shouldReturnSULU() {
@@ -173,42 +49,11 @@ public class CrossWordTest {
         assertEquals("SULU: (3,3),(2,2),(1,1),(0,0)", crossWord.word("SULU"));
     }
 
-    @Test public void shouldReturnBMJT() {
+    @Test public void shouldReturnUHURA() {
 
-        assertEquals("BMJT: (14,3),(13,2),(12,1),(11,0)", crossWord.word("BMJT"));
+        assertEquals("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)", crossWord.word("UHURA"));
     }
 
-    @Test public void shouldReturnNMMP() {
-
-        assertEquals("NMMP: (6,5),(7,6),(8,7),(9,8)", crossWord.word("NMMP"));
-    }
-
-    //DiagonalAsc Test
-
-    @Test public void shouldReturnDBYO() {
-
-        assertEquals("DBYO: (14,8),(13,9),(12,10),(11,11)", crossWord.word("DBYO"));
-    }
-
-    @Test public void shouldReturnBSSH() {
-
-        assertEquals("BSSH: (3,0),(2,1),(1,2),(0,3)", crossWord.word("BSSH"));
-    }
-
-    @Test public void shouldReturnKUUK() {
-
-        assertEquals("KUUK: (11,14),(12,13),(13,12),(14,11)", crossWord.word("KUUK"));
-    }
-
-    @Test public void shouldReturnKZYB() {
-
-        assertEquals("KZYB: (14,0),(13,1),(12,2),(11,3)", crossWord.word("KZYB"));
-    }
-
-    @Test public void shouldReturnKQME() {
-
-        assertEquals("KQME: (9,5),(8,6),(7,7),(6,8)", crossWord.word("KQME"));
-    }
 }
 
 
