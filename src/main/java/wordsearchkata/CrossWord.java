@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 
-
 public class CrossWord {
     public String word(String inputWord) {
         String[] wordList = null; //Array of words
@@ -42,7 +41,6 @@ public class CrossWord {
                     allWords[i-1][j] = lineArray[j]; // The actual crossword
                 }
             }
-
             lineReader.close();
         } catch (IOException ex) {
             System.err.println(ex);
@@ -59,10 +57,7 @@ public class CrossWord {
         }
         */
         String outPutFinal = "";
-        int r = 0;
-
-
-
+        int r = 0; //For testing purposes only
 
         while(true){
             // This is the start of the actual search.
@@ -70,9 +65,6 @@ public class CrossWord {
             int[][] firstLoc = firstLetter(allWords, numLines, inputWord);
             locX = firstLoc[r][0];
             locY = firstLoc[r][1];
-            //System.out.printf("%s\n", inputWord.substring(0, 1));
-            //System.out.printf("(%s,%s)\n", locX, locY);
-
             String firstCoords = "("+locX+","+locY+")";
             String[] h = null;
             String[] v = null;
@@ -88,7 +80,7 @@ public class CrossWord {
                     if(dd==null){
                         da = searchDiagonallyAsce(allWords, inputWord, locX, locY);
                         if(da==null){
-                            r++;
+                            r++; //For testing purposes only
                             continue;
                         } else {
                             outPut = da;
@@ -108,19 +100,6 @@ public class CrossWord {
             System.out.printf("%s\n", outPutString);
             outPutFinal = outPutString;
             break;
-
-            /*if(otherLocs != null){
-                String outPutString = String.join(",", otherLocs);
-                outPutString = inputWord+": "+firstCoords+","+outPutString;
-                System.out.printf("%s\n", outPutString);
-                outPutFinal = outPutString;
-                break;
-            }*/
-            //outPutString = inputWord+": "+firstCoords+","+outPutString;
-            //System.out.printf("%s\n", outPutString);
-            //outPutFinal = outPutString;
-
-            //r++;
         }
         return outPutFinal;
     }
@@ -144,7 +123,6 @@ public class CrossWord {
 
     public String[] searchHorizontally(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
-
         while(true){
            if((firstY<14)&&(allWords[firstX][firstY+1].equals(inputWord.substring(1, 1+1)))){
                //Right
@@ -175,13 +153,11 @@ public class CrossWord {
            }
            break;
         }
-
         return outPut;
     }
 
     public String[] searchVertically(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
-
         while(true){
             if((firstX<14)&&(allWords[firstX+1][firstY].equals(inputWord.substring(1, 1+1)))){
                 //Down
@@ -216,13 +192,11 @@ public class CrossWord {
             }
             break;
         }
-
         return outPut;
     }
 
     public String[] searchDiagonallyDesc(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
-
         while(true){
             if((firstX<14)&&(firstY<14)&&(allWords[firstX+1][firstY+1].equals(inputWord.substring(1, 1+1)))){
                 //DownRight
@@ -257,28 +231,14 @@ public class CrossWord {
             }
             break;
         }
-
         return outPut;
     }
 
     public String[] searchDiagonallyAsce(String[][] allWords, String inputWord, int firstX, int firstY){
         String[] outPut = new String[inputWord.length()-1];
-
         while(true){
             if((firstX<14)&&(firstY>0)&&(allWords[firstX+1][firstY-1].equals(inputWord.substring(1, 1+1)))){
                 //DownLeft
-                /*if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
-                    outPut = null;
-                    break;
-                }*/
-                /*if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
-                    outPut = null;
-                    break;
-                }
-                if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
-                    outPut = null;
-                    break;
-                }*/
                 for(int i = 1; i < inputWord.length();i++){
                     if(allWords[firstX+i][firstY-i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX+i)+","+(firstY-i)+")";
@@ -288,15 +248,6 @@ public class CrossWord {
                     }
                 }
             } else if((firstX>0)&&(firstY<14)&&(allWords[firstX-1][firstY+1].equals(inputWord.substring(1, 1+1)))){
-                //UpRight
-                /*if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
-                    outPut = null;
-                    break;
-                }*/
-                /*if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
-                    outPut = null;
-                    break;
-                }*/
                 for(int i = 1; i < inputWord.length();i++){
                     if(allWords[firstX-i][firstY+i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX-i)+","+(firstY+i)+")";
@@ -310,7 +261,6 @@ public class CrossWord {
             }
             break;
         }
-
         return outPut;
     }
 }
