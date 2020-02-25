@@ -11,14 +11,15 @@ import java.io.FileReader;
 
 
 public class CrossWord {
-    public String word(String inputWord) {
+    public String word(String inputWords) {
         String[] wordList = null; //Array of words
         String[][] allWords = null; //Crossword in Array
         String[] lineArray = null;
         String nextLine = null;
+        String outPut = "";
+        String inputW = "";
+        String firstWord = "";
         int numLines = 0;
-        int locX = 0;
-        int locY = 0;
 
         // This is the pulling of the text file and population of the wordList and actual crossword.
         String filePath = "/Users/labateje/wordsearchkata/src/main/java/wordsearchkata/WordList";
@@ -28,17 +29,17 @@ public class CrossWord {
             String firstLine = lineReader.readLine();
             wordList = firstLine.split(","); // The list of words
 
-            while (lineReader.readLine() != null){
+            while (lineReader.readLine() != null) {
                 numLines++;
             }
 
             allWords = new String[numLines][numLines];
 
-            for(int i=1;i<=numLines;i++) {
+            for (int i = 1; i <= numLines; i++) {
                 nextLine = Files.readAllLines(Paths.get("/Users/labateje/tddwordsearch/src/main/java/tddwordsearch/WordList")).get(i);
                 lineArray = nextLine.split(",");
-                for(int j=0;j<numLines;j++) {
-                    allWords[i-1][j] = lineArray[j]; // The actual crossword
+                for (int j = 0; j < numLines; j++) {
+                    allWords[i - 1][j] = lineArray[j]; // The actual crossword
                 }
             }
             lineReader.close();
@@ -56,6 +57,19 @@ public class CrossWord {
             }
         }
         */
+        String inputWordList[] = inputWords.split(",");
+        firstWord = inputWordList[0];
+        outPut = crossWordSearch(allWords, numLines, firstWord);
+        for(int i=1;i<inputWordList.length;i++){
+            inputW = inputWordList[i];
+            outPut += "\n" + crossWordSearch(allWords, numLines, inputW);
+        }
+
+        return outPut;
+    }
+
+    public String crossWordSearch(String[][] allWords, int numLines, String inputWord){
+
         String outPutFinal = "";
         int r = 0; //For testing purposes only
 
@@ -63,8 +77,8 @@ public class CrossWord {
             // This is the start of the actual search.
 
             int[][] firstLoc = firstLetter(allWords, numLines, inputWord);
-            locY = firstLoc[r][0];
-            locX = firstLoc[r][1];
+            int locY = firstLoc[r][0];
+            int locX = firstLoc[r][1];
             String firstCoords = "("+locX+","+locY+")";
             String[] h = null;
             String[] v = null;
