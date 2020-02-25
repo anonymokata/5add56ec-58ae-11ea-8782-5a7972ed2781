@@ -185,6 +185,10 @@ public class CrossWord {
         while(true){
             if((firstX<14)&&(allWords[firstX+1][firstY].equals(inputWord.substring(1, 1+1)))){
                 //Down
+                if(((inputWord.length()-1)+firstX)>14){
+                    outPut = null;
+                    break;
+                }
                 for(int i = 1; i < inputWord.length();i++){
                     if(allWords[firstX+i][firstY].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX+i)+","+(firstY)+")";
@@ -195,6 +199,10 @@ public class CrossWord {
                 }
             } else if((firstX>0)&&(allWords[firstX-1][firstY].equals(inputWord.substring(1, 1+1)))){
                 //Up
+                if(((firstX-(inputWord.length()-1))<0)){
+                    outPut = null;
+                    break;
+                }
                 for(int i = 1; i < inputWord.length();i++){
                     if(allWords[firstX-i][firstY].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX-i)+","+(firstY)+")";
@@ -218,10 +226,6 @@ public class CrossWord {
         while(true){
             if((firstX<14)&&(firstY<14)&&(allWords[firstX+1][firstY+1].equals(inputWord.substring(1, 1+1)))){
                 //DownRight
-                if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
-                    outPut = null;
-                    break;
-                }
                 if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
                     outPut = null;
                     break;
@@ -261,33 +265,41 @@ public class CrossWord {
         String[] outPut = new String[inputWord.length()-1];
 
         while(true){
-            if((firstX<14)&&(firstY<14)&&(allWords[firstX+1][firstY+1].equals(inputWord.substring(1, 1+1)))){
-                //DownRight
-                if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
+            if((firstX<14)&&(firstY>0)&&(allWords[firstX+1][firstY-1].equals(inputWord.substring(1, 1+1)))){
+                //DownLeft
+                /*if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
+                    outPut = null;
+                    break;
+                }*/
+                /*if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
                     outPut = null;
                     break;
                 }
-                if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
+                if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
                     outPut = null;
                     break;
-                }
+                }*/
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX+i][firstY+i].equals(inputWord.substring(i, i+1))){
-                        outPut[i-1] = "("+(firstX+i)+","+(firstY+i)+")";
+                    if(allWords[firstX+i][firstY-i].equals(inputWord.substring(i, i+1))){
+                        outPut[i-1] = "("+(firstX+i)+","+(firstY-i)+")";
                     } else{
                         outPut = null;
                         break;
                     }
                 }
-            } else if((firstX>0)&&(firstY>0)&&(allWords[firstX-1][firstY-1].equals(inputWord.substring(1, 1+1)))){
-                //UpLeft
-                if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
+            } else if((firstX>0)&&(firstY<14)&&(allWords[firstX-1][firstY+1].equals(inputWord.substring(1, 1+1)))){
+                //UpRight
+                /*if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
                     outPut = null;
                     break;
-                }
+                }*/
+                /*if((((inputWord.length()-1)+firstY)>14)||(((inputWord.length()-1)+firstX)>14)){
+                    outPut = null;
+                    break;
+                }*/
                 for(int i = 1; i < inputWord.length();i++){
-                    if(allWords[firstX-i][firstY-i].equals(inputWord.substring(i, i+1))){
-                        outPut[i-1] = "("+(firstX-i)+","+(firstY-i)+")";
+                    if(allWords[firstX-i][firstY+i].equals(inputWord.substring(i, i+1))){
+                        outPut[i-1] = "("+(firstX-i)+","+(firstY+i)+")";
                     } else{
                         outPut = null;
                         break;

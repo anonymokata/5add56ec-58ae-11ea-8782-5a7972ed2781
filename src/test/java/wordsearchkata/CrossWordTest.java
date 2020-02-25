@@ -128,6 +128,21 @@ public class CrossWordTest {
 
     //DiagonalAsc Test
 
+    @Test public void shouldReturnDBYO() {
+
+        assertEquals("DBYO: (14,8),(13,9),(12,10),(11,11)", crossWord.word("DBYO"));
+    }
+
+    @Test public void shouldReturnBSSH() {
+
+        assertEquals("BSSH: (3,0),(2,1),(1,2),(0,3)", crossWord.word("BSSH"));
+    }
+
+    @Test public void shouldReturnKUUK() {
+
+        assertEquals("KUUK: (11,14),(12,13),(13,12),(14,11)", crossWord.word("KUUK"));
+    }
+
 }
 
 
