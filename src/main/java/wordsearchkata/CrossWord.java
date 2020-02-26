@@ -38,7 +38,7 @@ public class CrossWord {
             allWords = new String[numLines][numLines];
 
             for (int i = 1; i <= numLines; i++) {
-                nextLine = Files.readAllLines(Paths.get("/Users/labateje/tddwordsearch/src/main/java/tddwordsearch/WordList")).get(i);
+                nextLine = Files.readAllLines(Paths.get(filePath)).get(i);
                 lineArray = nextLine.split(",");
                 for (int j = 0; j < numLines; j++) {
                     allWords[i - 1][j] = lineArray[j]; // The actual crossword
@@ -73,15 +73,7 @@ public class CrossWord {
             inputW = switcherList[i];
             outPut += "\n" + crossWordSearch(allWords, numLines, inputW);
         }
-        /*
-        String inputWordList[] = inputWords.split(",");
-        firstWord = inputWordList[0];
-        outPut = crossWordSearch(allWords, numLines, firstWord);
-        for(int i=1;i<inputWordList.length;i++){
-            inputW = inputWordList[i];
-            outPut += "\n" + crossWordSearch(allWords, numLines, inputW);
-        }
-         */
+
         return outPut;
     }
 
@@ -157,11 +149,11 @@ public class CrossWord {
         while(true){
            if((firstX<(numLines-1))&&(allWords[firstY][firstX+1].equals(inputWord.substring(1, 1+1)))){
                //Right
-               if(((inputWord.length()-1)+firstX)>(numLines-1)){
-                   outPut = null;
-                   break;
-               }
                for(int i = 1; i < inputWord.length();i++){
+                   if(((firstX+i)>(numLines-1))){
+                       outPut = null;
+                       break;
+                   }
                    if(allWords[firstY][firstX+i].equals(inputWord.substring(i, i+1))){
                        outPut[i-1] = "("+(firstX+i)+","+(firstY)+")";
                    } else{
@@ -172,6 +164,10 @@ public class CrossWord {
            } else if((firstX>0)&&(allWords[firstY][firstX-1].equals(inputWord.substring(1, 1+1)))){
                //Left
                for(int i = 1; i < inputWord.length();i++){
+                   if(((firstX-i)<0)){
+                       outPut = null;
+                       break;
+                   }
                    if(allWords[firstY][firstX-i].equals(inputWord.substring(i, i+1))){
                        outPut[i-1] = "("+(firstX-i)+","+(firstY)+")";
                    } else{
@@ -192,11 +188,11 @@ public class CrossWord {
         while(true){
             if((firstY<(numLines-1))&&(allWords[firstY+1][firstX].equals(inputWord.substring(1, 1+1)))){
                 //Down
-                if(((inputWord.length()-1)+firstY)>(numLines-1)){
-                    outPut = null;
-                    break;
-                }
                 for(int i = 1; i < inputWord.length();i++){
+                    if(((firstY+i)>(numLines-1))){
+                        outPut = null;
+                        break;
+                    }
                     if(allWords[firstY+i][firstX].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX)+","+(firstY+i)+")";
                     } else{
@@ -206,11 +202,11 @@ public class CrossWord {
                 }
             } else if((firstY>0)&&(allWords[firstY-1][firstX].equals(inputWord.substring(1, 1+1)))){
                 //Up
-                if(((firstY-(inputWord.length()-1))<0)){
-                    outPut = null;
-                    break;
-                }
                 for(int i = 1; i < inputWord.length();i++){
+                    if(((firstY-i)<0)){
+                        outPut = null;
+                        break;
+                    }
                     if(allWords[firstY-i][firstX].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX)+","+(firstY-i)+")";
                     } else{
@@ -231,11 +227,15 @@ public class CrossWord {
         while(true){
             if((firstY<(numLines-1))&&(firstX<(numLines-1))&&(allWords[firstY+1][firstX+1].equals(inputWord.substring(1, 1+1)))){
                 //DownRight
-                if((((inputWord.length()-1)+firstX)>(numLines-1))||(((inputWord.length()-1)+firstY)>14)){
-                    outPut = null;
-                    break;
-                }
                 for(int i = 1; i < inputWord.length();i++){
+                    if(((firstY+i)>(numLines-1))){
+                        outPut = null;
+                        break;
+                    }
+                    if(((firstX+i)>(numLines-1))){
+                        outPut = null;
+                        break;
+                    }
                     if(allWords[firstY+i][firstX+i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX+i)+","+(firstY+i)+")";
                     } else{
@@ -245,11 +245,15 @@ public class CrossWord {
                 }
             } else if((firstY>0)&&(firstX>0)&&(allWords[firstY-1][firstX-1].equals(inputWord.substring(1, 1+1)))){
                 //UpLeft
-                if(((firstY-(inputWord.length()-1))<0)||((firstX-(inputWord.length()-1))<0)){
-                    outPut = null;
-                    break;
-                }
                 for(int i = 1; i < inputWord.length();i++){
+                    if(((firstY-i)<0)){
+                        outPut = null;
+                        break;
+                    }
+                    if(((firstX-i)<0)){
+                        outPut = null;
+                        break;
+                    }
                     if(allWords[firstY-i][firstX-i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX-i)+","+(firstY-i)+")";
                     } else{
@@ -271,6 +275,14 @@ public class CrossWord {
             if((firstY<(numLines-1))&&(firstX>0)&&(allWords[firstY+1][firstX-1].equals(inputWord.substring(1, 1+1)))){
                 //DownLeft
                 for(int i = 1; i < inputWord.length();i++){
+                    if(((firstX-i)<0)){
+                        outPut = null;
+                        break;
+                    }
+                    if(((firstY+i)>(numLines-1))){
+                        outPut = null;
+                        break;
+                    }
                     if(allWords[firstY+i][firstX-i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX-i)+","+(firstY+i)+")";
                     } else{
@@ -279,7 +291,16 @@ public class CrossWord {
                     }
                 }
             } else if((firstY>0)&&(firstX<(numLines-1))&&(allWords[firstY-1][firstX+1].equals(inputWord.substring(1, 1+1)))){
+                //UpRight
                 for(int i = 1; i < inputWord.length();i++){
+                    if(((firstY-i)<0)){
+                        outPut = null;
+                        break;
+                    }
+                    if(((firstX+i)>(numLines-1))){
+                        outPut = null;
+                        break;
+                    }
                     if(allWords[firstY-i][firstX+i].equals(inputWord.substring(i, i+1))){
                         outPut[i-1] = "("+(firstX+i)+","+(firstY-i)+")";
                     } else{
