@@ -6,7 +6,7 @@
  */
 
 ABOUT:
- My program is using Java and JUnit4 for testing, I created it on IntelliJ IDEA with the textInput portion on Eclipse for readability.
+ My program is using Java and JUnit4 for testing, with Gradle. I created it on IntelliJ IDEA with the textInput portion on Eclipse for readability.
 
  After inputting a textfile, it will start a search to locate the words and their locations. It starts with finding the first letter of the word. Once the first letter is found, it tries horizontal searching, then moves on the vertical, diagonal descending, and finally diagonal ascending. Each directional search will look on both side of the axis. For example, horizontal will first look to the right, then to the left. 
 
@@ -23,5 +23,10 @@ HOW TO RUN:
 
  On test cases, you must present the words with the correct locations for the left side of the assertEquals, and put the list of words you want to check on the right side. For above mentioned useCustomInput, if set to true the program will ignore the right side input, and just check the left locations with the first line words of the textfile.
 
- Press run on CrossWordTest.shouldReturnAllWords.
- 
+ If using IntelliJ IDEA:
+ Press run on CrossWordTest.shouldReturnAllWords, etc.
+
+ If using terminal, navigate to project folder and run "gradle test --tests CrossWordTest.shouldReturnAllWords" for wordList, "gradle test --tests CrossWordTest.shouldReturnAllWordsPuzzleList" for PuzzleList, and "gradle test --tests CrossWordTest.shouldReturnAllWordsThirdList" for ThirdList.
+ Make sure path is set correctly for each test, not all tests will pass because some are unique to specific crosswords.
+ For all other tests, make sure useCustomInput is set to true, and run your tests accordingly.
+
